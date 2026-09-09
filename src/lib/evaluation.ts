@@ -62,7 +62,11 @@ export class DeterministicEvaluator implements EvaluationStrategy {
     });
 
     const passedCount = checks.filter((c) => c.passed).length;
-    const deterministicScore = Math.round((passedCount / checks.length) * 40); // max 40 pts
+    // Guard: empty keyword list would divide by zero → NaN score
+    const deterministicScore =
+      checks.length === 0
+        ? 0
+        : Math.round((passedCount / checks.length) * 40); // max 40 pts
 
     return { deterministicChecks: checks, overallScore: deterministicScore };
   }
@@ -141,8 +145,12 @@ Respond ONLY with a valid JSON object in this exact format (no extra text):
 
     const parsed = JSON.parse(jsonMatch[0]);
 
+    // Guard: model may return a non-numeric aiScore → coerce, fallback to 0
+    const aiScoreRaw = Number(parsed.aiScore);
+    const aiScore = Number.isFinite(aiScoreRaw) ? aiScoreRaw : 0;
+
     return {
-      overallScore: Math.min(60, Math.max(0, parsed.aiScore ?? 0)),
+      overallScore: Math.min(60, Math.max(0, aiScore)),
       aiInsights: parsed.aiInsights ?? "",
       strengths: parsed.strengths ?? [],
       suggestions: parsed.suggestions ?? [],
@@ -234,6 +242,15 @@ export const PROBLEM_KEYWORDS: Record<string, string[]> = {
     "Door",
     "Scheduler",
   ],
+  library: ["Book", "Member", "Catalog", "Lending", "Reservation", "Fine"],
+  "expense-sharing": [
+    "User",
+    "Group",
+    "Expense",
+    "Split",
+    "Balance",
+    "Settle",
+  ],
 };
 
 export function getKeywordsForProblem(problemTitle: string): string[] {
@@ -241,6 +258,9 @@ export function getKeywordsForProblem(problemTitle: string): string[] {
   if (title.includes("parking")) return PROBLEM_KEYWORDS["parking-lot"];
   if (title.includes("vending")) return PROBLEM_KEYWORDS["vending-machine"];
   if (title.includes("elevator")) return PROBLEM_KEYWORDS["elevator"];
+  if (title.includes("library")) return PROBLEM_KEYWORDS["library"];
+  if (title.includes("splitwise") || title.includes("expense"))
+    return PROBLEM_KEYWORDS["expense-sharing"];
   // Generic fallback: require class and interface
   return ["class", "interface"];
 }
