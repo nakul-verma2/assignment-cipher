@@ -1,0 +1,366 @@
+.main {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bgOrb1 {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  top: -200px;
+  right: -200px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bgOrb2 {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  bottom: -150px;
+  left: -150px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Header */
+.header { padding: 1rem 0; }
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.navLink {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover,
+.navLinkActive {
+  color: var(--text-primary);
+}
+
+/* Content */
+.content {
+  padding: 4rem 0 6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pageHeader {
+  margin-bottom: 2.5rem;
+}
+
+.heroBadge {
+  display: inline-block;
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  color: #c4b5fd;
+  border-radius: 9999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+/* Search Panel */
+.searchPanel {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.searchForm {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.searchInputWrapper {
+  position: relative;
+  flex: 1;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.searchInput {
+  padding-left: 2.75rem !important;
+}
+
+.searchBtn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Error */
+.errorBanner {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  color: #fca5a5;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Results */
+.results { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.resultsMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.avgScore { font-size: 0.9rem; }
+
+/* Submission List */
+.submissionList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.submissionCard {
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s;
+}
+
+.submissionCard:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.cardRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cardLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.problemTitle {
+  font-size: 1.1rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.dateText {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.cardRight {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.scorePill {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid;
+  font-weight: 700;
+}
+
+.scoreNum {
+  font-size: 1.3rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+.scoreMax {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.expandBtn {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+}
+
+/* Expanded */
+.divider {
+  height: 1px;
+  background: var(--glass-border);
+  margin: 1rem 0;
+}
+
+.expandedContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.insightBox {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid var(--glass-border);
+}
+
+.insightLabel,
+.listLabel {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.insightText {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.listBox {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid var(--glass-border);
+}
+
+.inlineList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.inlineList li {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  padding-left: 1rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.inlineList li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: #c4b5fd;
+}
+
+.checks { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.checkPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.checkPill {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.checkPillPass {
+  background: rgba(52, 211, 153, 0.1);
+  border-color: rgba(52, 211, 153, 0.3);
+  color: #34d399;
+}
+
+.checkPillFail {
+  background: rgba(248, 113, 113, 0.1);
+  border-color: rgba(248, 113, 113, 0.3);
+  color: #f87171;
+}
+
+/* Submitted Design */
+.submittedDetails {
+  margin-top: 0.5rem;
+}
+
+.submittedSummary {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5rem 0;
+}
+
+.submittedSummary:hover { color: var(--text-primary); }
+
+.submittedCode {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: #e2e8f0;
+  font-family: 'Fira Code', monospace, sans-serif;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  margin-top: 0.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .searchForm { flex-direction: column; }
+  .searchBtn { width: 100%; }
+  .twoCol { grid-template-columns: 1fr; }
+  .cardRow { flex-direction: column; align-items: flex-start; }
+}
